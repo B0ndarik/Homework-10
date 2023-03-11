@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework#10</title>
+  </head>
+  <body>
+    <script>
+      const stockPricesArr = [
+        102, 345, 678, 1509, 1209, 980, 1800, 2345, 1709, 1100, 856, 568, 1050,
+      ];
+      document.write(`${stockPricesArr}<br>`);
+
+      //=====================================================================================
+      //1.Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
+
+      const stockPricesMoreThan_1000 = stockPricesArr.filter((el) => el > 1000);
+      document.write(`${stockPricesMoreThan_1000}<br>`);
+
+      //2.Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.
+      //=====================================================================================
+      const indexMoreThan_1000 = stockPricesArr
+        .map((element, index) => {
+          if (element > 1000) return index;
+        })
+        .filter((element) => element !== undefined);
+
+      document.write(`${indexMoreThan_1000}<br>`);
+
+      //=====================================================================================
+      //3.Сформувати список з тих цін, які більші за попереднє значення
+
+      // const moreThanBefore = stockPricesArr.reduce(
+      //   (prevValue, price, index, baseArr) => {
+      //     if (price > baseArr[index - 1]) prevValue.push(price);
+      //     return prevValue;
+      //   },
+      //   []
+      // );
+
+      const moreThanBefore = stockPricesArr.filter(
+        (price, index, baseArr) => price > baseArr[index - 1]
+      );
+      document.write(`${moreThanBefore}<br>`);
+
+      //=====================================================================================
+      //4.Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального
+
+      const percentPrices = stockPricesArr.map((price, index, baseArr) =>
+        ((price / Math.max(...baseArr)) * 100).toFixed(0)
+      );
+      document.write(`${percentPrices}<br>`);
+
+      //=====================================================================================
+      //5.Підрахувати кількість змін цін
+
+      const changesNumber = stockPricesArr.reduce(
+        (changes, price, index, baseArr) => {
+          if (price !== baseArr[index - 1] && index !== 0) return ++changes;
+          return changes;
+        },
+        0
+      );
+
+      document.write(`${changesNumber}<br>`);
+
+      //=====================================================================================
+      //6.Визначити, чи є ціна, що менше 1000
+
+      const findIfLessThan_1000 = stockPricesArr.some((price) => price < 1000);
+      document.write(
+        `If there is price less than 1000-${findIfLessThan_1000}<br>`
+      );
+
+      //=====================================================================================
+      //7.Визначати, чи усі ціни більше за 1000
+
+      const ifAllMoreThan_1000 = stockPricesArr.every(
+        (prices) => prices > 1000
+      );
+      document.write(`If all prices more than 1000-${ifAllMoreThan_1000}<br>`);
+
+      //=====================================================================================
+      //8.Підрахувати кількість цін, що більше за 1000
+
+      const numberPricesAbove_1000 = stockPricesArr.reduce(
+        (counterMore_1000, price) =>
+          price > 1000 ? ++counterMore_1000 : counterMore_1000,
+        0
+      );
+      document.write(`${numberPricesAbove_1000}<br>`);
+
+      //=====================================================================================
+      //9.Підрахувати суму цін, що більше за 1000
+
+      const sumPricesAbove_1000 = stockPricesArr.reduce(
+        (sumMore_1000, price) =>
+          price > 1000 ? (sumMore_1000 += price) : sumMore_1000,
+        0
+      );
+      document.write(`${sumPricesAbove_1000}<br>`);
+
+      //=====================================================================================
+      //10.Знайти першу ціну, що більше за 1000
+
+      const firstMoreThan_1000 = stockPricesArr.find((price) => price > 1000);
+      document.write(`${firstMoreThan_1000}<br>`);
+
+      //=====================================================================================
+      //11.Знайти індекс першої ціни, що більше за 1000
+
+      const firstIndexMoreThan_1000 = stockPricesArr.findIndex(
+        (price) => price > 1000
+      );
+      document.write(`${firstIndexMoreThan_1000}<br>`);
+
+      //=====================================================================================
+      //12.Знайти останню ціну, що більше за 1000
+
+      const lastMoreThan_1000 = stockPricesArr.findLast(
+        (price) => price > 1000
+      );
+      document.write(`${lastMoreThan_1000}<br>`);
+
+      //=====================================================================================
+      //13.Знайти індекс останньої ціни, що більше за 1000
+
+      const lastIndexMoreThan_1000 = stockPricesArr.findLastIndex(
+        (price) => price > 1000
+      );
+      document.write(`${lastIndexMoreThan_1000}<br>`);
+    </script>
+  </body>
+</html>
